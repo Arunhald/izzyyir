@@ -46,7 +46,7 @@ async def ping_com(client, message: Message, _):
         reply_markup=InlineKeyboardMarkup(cls)
     )
 @app.on_callback_query()
-def close(Client, cb: CallbackQuery):
+def sedaf(Client, cb: CallbackQuery):
     if cb.data == "clse":
         cb.answer("ϲℓοѕє∂!!🥀")
         cb.message.delete()
