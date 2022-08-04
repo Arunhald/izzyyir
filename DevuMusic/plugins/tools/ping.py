@@ -4,7 +4,7 @@
 from datetime import datetime
 
 from pyrogram import filters
-from pyrogram.types import Message
+from pyrogram.types import Message, InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery     
 
 from config import BANNED_USERS, MUSIC_BOT_NAME, PING_IMG_URL
 from strings import get_command
@@ -16,6 +16,12 @@ from DevuMusic.utils.decorators.language import language
 ### Commands
 PING_COMMAND = get_command("PING_COMMAND")
 
+
+cls = [
+    [
+        InlineKeyboardButton("✘ •• ❁ ᴄℓοѕє ❁ •• ✘", callback_data="clse")
+    ],
+]
 
 @app.on_message(
     filters.command(PING_COMMAND)
@@ -36,5 +42,11 @@ async def ping_com(client, message: Message, _):
     await response.edit_text(
         _["ping_2"].format(
             MUSIC_BOT_NAME, resp, UP, DISK, CPU, RAM, pytgping
-        )
+        ),
+        reply_markup=InlineKeyboardMarkup(cls)
     )
+@app.on_callback_query()
+def close(Client, cb: CallbackQuery):
+    if cb.data == "clse":
+        cb.answer("ϲℓοѕє∂!!🥀")
+        cb.message.delete()
