@@ -3,11 +3,9 @@
 
 import asyncio
 import os
-
 import speedtest
-import wget
 from pyrogram import filters
-
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from strings import get_command
 from DevuMusic import app
 from DevuMusic.misc import SUDOERS
@@ -27,17 +25,31 @@ def testspeed(m):
         test.results.share()
         result = test.results.dict()
         m = m.edit("Sharing SpeedTest Results")
-        path = wget.download(result["share"])
+        poto = (result["share"])    
     except Exception as e:
         return m.edit(e)
-    return result, path
+    return result
+
+
+BUTUN = [
+    [
+        InlineKeyboardButton(
+            "◊ʀᴇᴘᴏ◊",
+            url="https://github.com/ItsmeHyper13/DevuMuxic",
+        ),
+        InlineKeyboardButton(
+            "◊ᴄʟᴏsᴇ◊",
+            callback_data="close",
+        ),
+    ],
+]
 
 
 @app.on_message(filters.command(SPEEDTEST_COMMAND) & SUDOERS)
 async def speedtest_function(client, message):
     m = await message.reply_text("Running Speed test")
-    loop = asyncio.get_event_loop_policy().get_event_loop()
-    result, path = await loop.run_in_executor(None, testspeed, m)
+    loop = asyncio.get_event_loop()
+    result = await loop.run_in_executor(None, testspeed, m)
     output = f"""**Speedtest Results**
     
 <u>**Client:**</u>
@@ -51,7 +63,7 @@ async def speedtest_function(client, message):
 **__Latency:__** {result['server']['latency']}  
 **__Ping:__** {result['ping']}"""
     msg = await app.send_photo(
-        chat_id=message.chat.id, photo=path, caption=output
+        chat_id=message.chat.id, photo=poto, caption=output, reply_markup=InlineKeyboardMarkup(BUTUN)
     )
-    os.remove(path)
     await m.delete()
+    await message.delete()
