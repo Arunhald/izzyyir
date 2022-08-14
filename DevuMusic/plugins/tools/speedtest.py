@@ -1,6 +1,5 @@
 # Creator Or Dev @HYPER_AD13 | @SHINING_OFF <Found On telegram>
 # Found on github < https://github.com/ItsmeHyper13 >.
-
 import asyncio
 import os
 import speedtest
@@ -34,11 +33,11 @@ def testspeed(m):
 BUTUN = [
     [
         InlineKeyboardButton(
-            "◊ʀᴇᴘᴏ◊",
+            "◊ ʀᴇᴘᴏ ◊",
             url="https://github.com/ItsmeHyper13/DevuMuxic",
         ),
         InlineKeyboardButton(
-            "◊ᴄʟᴏsᴇ◊",
+            "◊ ᴄʟᴏsᴇ ◊",
             callback_data="close",
         ),
     ],
