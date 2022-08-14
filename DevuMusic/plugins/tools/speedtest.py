@@ -49,18 +49,18 @@ async def speedtest_function(client, message):
     m = await message.reply_text("Running Speed test")
     loop = asyncio.get_event_loop()
     result = await loop.run_in_executor(None, testspeed, m)
-    output = f"""**Speedtest Results**
+    output = f"""<strong><b><u>♦ 𝄞ᴘᴇᴇᴅᴛᴇsᴛ∮ʀᴇsᴜʟᴛs.</u></b></strong>
     
-<u>**Client:**</u>
-**__ISP:__** {result['client']['isp']}
-**__Country:__** {result['client']['country']}
+<strong><i>➥ <u>ᴄʟɪᴇɴᴛ</u> ✨»»»</i></strong>
+<b>❍ ɪsᴘ</b> ⇝ <code>{result['client']['isp']}</code>
+<b>❍ ᴄᴏᴜɴᴛʀʏ</b> ⇝ <code>{result['client']['country']}</code>
   
-<u>**Server:**</u>
-**__Name:__** {result['server']['name']}
-**__Country:__** {result['server']['country']}, {result['server']['cc']}
-**__Sponsor:__** {result['server']['sponsor']}
-**__Latency:__** {result['server']['latency']}  
-**__Ping:__** {result['ping']}"""
+<strong><i>➥ <u>sᴇʀᴠᴇʀ</u> 🌟»»»</i></strong>
+<b>❍ ɴᴀᴍᴇ</b> ⇝ <code>{result['server']['name']}</code>
+<b>❍ ᴄᴏᴜɴᴛʀʏ</b> ⇝ <code>{result['server']['country']},{result['server']['cc']}</code>
+<b>❍ sᴘᴏɴsᴏʀ</b> ⇝ <code>{result['server']['sponsor']}</code>
+<b>❍ ʟᴀᴛᴇɴᴄʏ</b> ⇝ <code>{result['server']['latency']}</code>
+<b>❍ ᴘɪɴɢ</b> ⇝ <code>{result['ping']}</code>"""
     msg = await app.send_photo(
         chat_id=message.chat.id, photo=poto, caption=output, reply_markup=InlineKeyboardMarkup(BUTUN)
     )
