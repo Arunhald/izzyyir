@@ -23,8 +23,7 @@ def testspeed(m):
         test.upload()
         test.results.share()
         result = test.results.dict()
-        m = m.edit("Sharing SpeedTest Results")
-        poto = (result["share"])    
+        m = m.edit("Sharing SpeedTest Results")    
     except Exception as e:
         return m.edit(e)
     return result
@@ -49,6 +48,7 @@ async def speedtest_function(client, message):
     m = await message.reply_text("Running Speed test")
     loop = asyncio.get_event_loop()
     result = await loop.run_in_executor(None, testspeed, m)
+    poto = result["share"]
     output = f"""<strong><b><u>♦ 𝄞ᴘᴇᴇᴅᴛᴇsᴛ∮ʀᴇsᴜʟᴛs.</u></b></strong>
     
 <strong><i>➥ <u>ᴄʟɪᴇɴᴛ</u> ✨»»»</i></strong>
