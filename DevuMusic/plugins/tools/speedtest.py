@@ -29,22 +29,23 @@ def testspeed(m):
     return result
 
 
-BUTUN = [
-    [
-        InlineKeyboardButton(
-            "◊ ʀᴇᴘᴏ ◊",
-            url="https://github.com/ItsmeHyper13/DevuMuxic",
-        ),
-        InlineKeyboardButton(
-            "◊ ᴄʟᴏsᴇ ◊",
-            callback_data="close",
-        ),
-    ],
-]
+
 
 
 @app.on_message(filters.command(SPEEDTEST_COMMAND) & SUDOERS)
 async def speedtest_function(client, message):
+    BUTUN = [
+        [
+            InlineKeyboardButton(
+                "◊ ʀᴇᴘᴏ ◊",
+                url="https://github.com/ItsmeHyper13/DevuMuxic",
+            ),
+            InlineKeyboardButton(
+                "◊ ᴄʟᴏsᴇ ◊",
+                callback_data=f"forceclose abc|{message.from_user.id}",
+            ),
+        ],
+    ]
     m = await message.reply_text("Running Speed test")
     loop = asyncio.get_event_loop()
     result = await loop.run_in_executor(None, testspeed, m)
