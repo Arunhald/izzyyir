@@ -130,7 +130,7 @@ async def forceclose_command(_, CallbackQuery):
     if CallbackQuery.from_user.id != int(user_id):
         try:
             return await CallbackQuery.answer(
-                "You're not allowed to close this.", show_alert=True
+                "Abe Laude apna kam kr n ch***iya sala 🙄", show_alert=True
             )
         except:
             return
